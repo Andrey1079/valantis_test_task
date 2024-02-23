@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--text-color);
+  border: 1px solid var(--blue);
+  box-shadow: 0px 0px 5px var(--blue);
+  border-radius: 10px;
+  padding: 10px;
+  gap: 15px;
+  max-height: 200px;
+  justify-content: space-between;
+}
+.title {
+  margin: 0;
+  font-size: 15px;
+}
+.brand {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+.price {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}

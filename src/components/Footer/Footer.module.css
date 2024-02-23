@@ -4,7 +4,7 @@
   border-top: 1px solid var(--text-color);
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .contacts {
@@ -13,10 +13,16 @@
   padding: 0;
 }
 .contacts_list_item {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .contacts_item {
   color: var(--text-color);
   text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.contacts_item:hover {
+  opacity: 0.5;
+  transition: opacity 0.5s;
 }
