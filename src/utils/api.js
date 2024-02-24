@@ -18,11 +18,15 @@ const getItems = (ids) => {
 };
 
 const getFilteredProducts = (field, value) => {
+  let request = value;
+  if (field === 'price') {
+    request = parseInt(value);
+  }
   const body = {
     action: 'filter',
     params: {},
   };
-  body.params[field] = value;
+  body.params[field] = request;
   const items = apiRequest(body);
   return items;
 };

@@ -2,6 +2,7 @@ import styles from './Main.module.css';
 import Card from '../Card/Card';
 import Loader from '../Loader/Loader';
 import SearchInput from '../SearchInput/SearchInput';
+import ChooseCategory from '../ChooseCategory/ChooseCategory';
 import { getIds, getItems, getFilteredProducts } from '../../utils/api';
 import checkRepeatIds from '../../helpers/checkRepeatIds';
 import { useState } from 'react';
@@ -14,33 +15,46 @@ const Main = () => {
   const [offset, setOffset] = useState(0);
   const [loading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState('');
+  const [category, setCategory] = useState(null);
+
+  useEffect(() => {
+    if (filter === '') {
+      setIsLoading(true);
+      getIds()
+        .then((res) => {
+          if (res) setIds([...new Set(res.result)]);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }
+  }, [filter]);
 
   useEffect(() => {
     setIsLoading(true);
-    getIds().then((res) => {
-      if (res) setIds([...new Set(res.result)]);
-      setIsLoading(false);
-    });
-  }, []);
-
-  useEffect(() => {
     const partOfIds = ids.slice(offset, offset + PAGINATION_LIMIT);
-    getItems(partOfIds).then((res) => {
-      if (res) {
-        const items = checkRepeatIds(res.result);
-        setProducts(items);
-      }
-    });
+    getItems(partOfIds)
+      .then((res) => {
+        if (res) {
+          const items = checkRepeatIds(res.result);
+          setProducts(items);
+        }
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }, [offset, ids]);
 
   useEffect(() => {
-    console.log('filter');
     if (filter !== '') {
-      getFilteredProducts('product', filter).then((res) => {
-        if (res) setIds([...new Set(res.result)]);
-      });
+      setIsLoading(true);
+      setOffset(0);
+      getFilteredProducts(category, filter)
+        .then((res) => {
+          if (res) setIds([...new Set(res.result)]);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
     }
-  }, [filter]);
+  }, [filter, category]);
 
   const increaseOffset = () => {
     setOffset(offset + PAGINATION_LIMIT);
@@ -53,7 +67,11 @@ const Main = () => {
   return (
     <main className={styles.main}>
       {loading && <Loader />}
-      <SearchInput filter={setFilter} />
+      <ChooseCategory onChange={setCategory} />
+      <SearchInput
+        category={category}
+        filter={setFilter}
+      />
       <ul className={styles.cards_container}>
         {products.map((product) => {
           return (

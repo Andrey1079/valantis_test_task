@@ -1,0 +1,11 @@
+.category {
+  display: flex;
+  flex-direction: column;
+}
+.input_container {
+  margin: 5px 0;
+}
+.label {
+  margin-left: 5px;
+  color: var(--text-color);
+}
