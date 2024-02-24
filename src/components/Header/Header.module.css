@@ -11,7 +11,7 @@
   flex-grow: 0;
 }
 .title {
-  font-weight: 50px;
+  font-weight: 500;
   color: var(--text-color);
   flex-grow: 1;
   text-align: center;

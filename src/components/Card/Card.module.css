@@ -10,18 +10,23 @@
   gap: 15px;
   max-height: 200px;
   justify-content: space-between;
+  height: 100%;
 }
+
 .title {
   margin: 0;
   font-size: 15px;
+  flex-grow: 1;
 }
 .brand {
   margin: 0;
   font-size: 15px;
   font-weight: 500;
+  flex-grow: 0;
 }
 .price {
   margin: 0;
   font-size: 15px;
   font-weight: 500;
+  flex-grow: 0;
 }

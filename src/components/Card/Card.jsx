@@ -7,13 +7,13 @@ const data = {
 };
 const Card = ({ data }) => {
   return (
-    <div className={styles.container}>
+    <li className={styles.container}>
       <h3 className={styles.title}>{data.product}</h3>
       <p className={styles.brand}>{`Бренд: ${
         data.brand ? data.brand : '-'
       }`}</p>
       <p className={styles.price}>{`Цена: ${data.price} руб.`}</p>
-    </div>
+    </li>
   );
 };
 

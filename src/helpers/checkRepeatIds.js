@@ -1,4 +1,4 @@
-const checkRepeat = (products) => {
+const checkRepeatIds = (products) => {
   const productsSet = products.reduce((res, product) => {
     if (!res.find((element) => element.id === product.id)) {
       res.push(product);
@@ -8,4 +8,4 @@ const checkRepeat = (products) => {
 
   return productsSet;
 };
-export default checkRepeat;
+export default checkRepeatIds;

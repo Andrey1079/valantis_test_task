@@ -1,10 +1,8 @@
-import { PAGINATION_LIMIT } from '../variables/variables';
 import apiRequest from './apiRequest';
 
-const getIds = (offset = 0) => {
+const getIds = (offset = 0, limit) => {
   const body = {
     action: 'get_ids',
-    params: { offset: offset, limit: PAGINATION_LIMIT },
   };
   const ids = apiRequest(body);
   return ids;

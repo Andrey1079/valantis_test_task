@@ -1,7 +1,8 @@
 import { BASE_URL } from '../variables/variables';
-import generatePassword from './generatePassword';
+import generatePassword from '../helpers/generatePassword';
 
-async function apiRequest(body) {
+function apiRequest(body) {
+  console.log(body.action);
   const settingsObj = {
     method: 'POST',
     headers: {
@@ -10,7 +11,10 @@ async function apiRequest(body) {
     },
     body: JSON.stringify(body),
   };
+  return checkResponse(settingsObj, body);
+}
 
+async function checkResponse(settingsObj, body) {
   try {
     const response = await fetch(BASE_URL, settingsObj);
     if (!response.ok) {
@@ -20,6 +24,7 @@ async function apiRequest(body) {
     return data;
   } catch (err) {
     console.log(err);
+    apiRequest(body);
   }
 }
 export default apiRequest;
