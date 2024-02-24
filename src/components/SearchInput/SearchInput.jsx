@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './SearchInput.module.css';
 
-const SearchInput = ({ filter }) => {
+const SearchInput = ({ filter, field }) => {
   const [inputValue, setInputValue] = useState('');
   const handleOnChange = (e) => {
     const value = e.target.value;

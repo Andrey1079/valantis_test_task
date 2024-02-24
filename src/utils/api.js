@@ -17,4 +17,14 @@ const getItems = (ids) => {
   return items;
 };
 
-export { getIds, getItems };
+const getFilteredProducts = (field, value) => {
+  const body = {
+    action: 'filter',
+    params: {},
+  };
+  body.params[field] = value;
+  const items = apiRequest(body);
+  return items;
+};
+
+export { getIds, getItems, getFilteredProducts };

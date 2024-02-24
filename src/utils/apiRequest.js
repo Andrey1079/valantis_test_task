@@ -2,7 +2,6 @@ import { BASE_URL } from '../variables/variables';
 import generatePassword from '../helpers/generatePassword';
 
 function apiRequest(body) {
-  console.log(body.action);
   const settingsObj = {
     method: 'POST',
     headers: {

@@ -2,17 +2,18 @@ import styles from './Main.module.css';
 import Card from '../Card/Card';
 import Loader from '../Loader/Loader';
 import SearchInput from '../SearchInput/SearchInput';
-import { getIds, getItems } from '../../utils/api';
+import { getIds, getItems, getFilteredProducts } from '../../utils/api';
 import checkRepeatIds from '../../helpers/checkRepeatIds';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { PAGINATION_LIMIT } from '../../variables/variables';
+import { PAGINATION_LIMIT, STOCK } from '../../variables/variables';
 
 const Main = () => {
   const [ids, setIds] = useState([]);
   const [products, setProducts] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setIsLoading] = useState(false);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,30 +22,38 @@ const Main = () => {
       setIsLoading(false);
     });
   }, []);
+
   useEffect(() => {
-    setIsLoading(true);
-    getItems(ids.slice(offset, offset + PAGINATION_LIMIT)).then((res) => {
+    const partOfIds = ids.slice(offset, offset + PAGINATION_LIMIT);
+    getItems(partOfIds).then((res) => {
       if (res) {
         const items = checkRepeatIds(res.result);
         setProducts(items);
-        setIsLoading(false);
       }
     });
   }, [offset, ids]);
 
+  useEffect(() => {
+    console.log('filter');
+    if (filter !== '') {
+      getFilteredProducts('product', filter).then((res) => {
+        if (res) setIds([...new Set(res.result)]);
+      });
+    }
+  }, [filter]);
+
   const increaseOffset = () => {
-    setOffset(offset + 50);
+    setOffset(offset + PAGINATION_LIMIT);
   };
 
   const decreaseOffset = () => {
-    setOffset(offset - 50);
+    setOffset(offset - PAGINATION_LIMIT);
   };
-  const filter = () => {};
 
   return (
     <main className={styles.main}>
       {loading && <Loader />}
-      <SearchInput filter={(value) => console.log(1 + value)} />
+      <SearchInput filter={setFilter} />
       <ul className={styles.cards_container}>
         {products.map((product) => {
           return (
