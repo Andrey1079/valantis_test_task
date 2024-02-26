@@ -1,8 +1,8 @@
 import styles from './ChooseCategory.module.css';
 
-const ChooseCategory = ({ onChange }) => {
+const ChooseCategory = ({ setCategory }) => {
   const handleChange = (e) => {
-    onChange(e.target.value);
+    setCategory(e.target.value);
   };
   return (
     <div className={styles.category}>

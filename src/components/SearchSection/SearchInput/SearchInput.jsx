@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import styles from './SearchInput.module.css';
 
-const SearchInput = ({ filter, category }) => {
+const SearchInput = ({ setFilter, category }) => {
   const [inputValue, setInputValue] = useState('');
   const handleOnChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
   };
   const handleFilter = () => {
-    filter(inputValue);
+    const value = inputValue;
+    setFilter(value);
   };
   return (
     <div className={styles.search_container}>
