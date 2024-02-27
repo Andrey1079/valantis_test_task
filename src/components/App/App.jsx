@@ -3,49 +3,44 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
 import ProductList from '../ProductList/ProductList';
-import { getIds, getItems, getFilteredProducts } from '../../utils/api';
+import { getIds, getItems, getFilteredIds } from '../../utils/api';
 import checkRepeatIds from '../../helpers/checkRepeatIds';
 import { PAGINATION_LIMIT } from '../../variables/variables';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 function App() {
   const [ids, setIds] = useState([]);
   const [filteredIds, setFilteredIds] = useState([]);
   const [products, setProducts] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('');
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState('');
+
+  const sliceItems = useCallback(
+    (data) => {
+      const partOfIds = data.slice(offset, offset + PAGINATION_LIMIT);
+      return partOfIds;
+    },
+    [offset]
+  );
 
   useEffect(() => {
-    if (filter === '') {
+    getIds()
+      .then((res) => {
+        if (res) {
+          setIds([...new Set(res.result)]);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  // -------------------------------------------Запрос товаров из общего списка
+  useEffect(() => {
+    if (ids.length > 1 && filter.length < 1) {
+      console.log('getItems');
       setIsLoading(true);
-      getIds()
-        .then((res) => {
-          if (res) {
-            setIds([...new Set(res.result)]);
-            setIsLoading(false);
-          }
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [filter]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    if (filter === '') {
-      const partOfIds = ids.slice(offset, offset + PAGINATION_LIMIT);
-      getItems(partOfIds)
-        .then((res) => {
-          if (res) {
-            const items = checkRepeatIds(res.result);
-            setProducts(items);
-            setIsLoading(false);
-          }
-        })
-        .catch((err) => console.log(err));
-    } else {
-      const partOfIds = filteredIds.slice(offset, offset + PAGINATION_LIMIT);
+      const partOfIds = sliceItems(ids);
       getItems(partOfIds)
         .then((res) => {
           if (res) {
@@ -56,24 +51,46 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [offset, ids, filter, filteredIds]);
+  }, [ids, sliceItems, filter]);
 
+  // -------------------------------------------Запрос товаров из отфильтрованного списка
   useEffect(() => {
-    if (filter !== '') {
+    if (filteredIds.length > 0) {
+      console.log('filteredItems');
+      setIsLoading(true);
+      const partOfIds = sliceItems(filteredIds);
+      getItems(partOfIds)
+        .then((res) => {
+          if (res) {
+            const items = checkRepeatIds(res.result);
+            setProducts(items);
+            setIsLoading(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [filteredIds, sliceItems]);
+
+  // ---------------------------------------------Запрос id по фильтру
+  useEffect(() => {
+    if (filter.length > 0) {
+      console.log('getFilteredIds');
       setIsLoading(true);
       setOffset(0);
-      getFilteredProducts(category, filter)
+      getFilteredIds(category, filter)
         .then((res) => {
-          if (res) {
+          if (res && res.result.length > 0) {
             setFilteredIds([...new Set(res.result)]);
+          } else {
+            setProducts([]);
             setIsLoading(false);
           }
         })
         .catch((err) => console.log(err));
-    } else {
-      setFilteredIds([]);
     }
-  }, [filter]);
+  }, [filter, category]);
 
   return (
     <div className={styles.page}>
@@ -87,6 +104,7 @@ function App() {
         category={category}
         setFilter={setFilter}
         products={products}
+        filter={filter}
       />
       <Footer />
     </div>

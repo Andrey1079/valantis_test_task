@@ -17,7 +17,7 @@ const getItems = (ids) => {
   return items;
 };
 
-const getFilteredProducts = (field, value) => {
+const getFilteredIds = (field, value) => {
   let request = value;
   if (field === 'price') {
     request = parseInt(value);
@@ -31,4 +31,4 @@ const getFilteredProducts = (field, value) => {
   return items;
 };
 
-export { getIds, getItems, getFilteredProducts };
+export { getIds, getItems, getFilteredIds };

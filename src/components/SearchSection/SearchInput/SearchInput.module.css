@@ -5,6 +5,7 @@
 }
 .input {
   flex-grow: 1;
+  border-radius: 5px;
 }
 .search_button {
   background-image: url(../../../images/search.png);
@@ -30,4 +31,7 @@
 .search_button_disabled {
   opacity: 0.3;
   pointer-events: none;
+}
+.search_button_reset {
+  background-image: url(../../../images/reset_btn.png);
 }

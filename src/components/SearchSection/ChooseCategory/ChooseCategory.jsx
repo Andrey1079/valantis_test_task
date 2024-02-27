@@ -1,57 +1,61 @@
+import { useEffect, useMemo, useState } from 'react';
 import styles from './ChooseCategory.module.css';
 
-const ChooseCategory = ({ setCategory }) => {
+const ChooseCategory = ({ setCategory, category }) => {
+  const defaultInputs = useMemo(
+    () => [
+      { name: 'Наименование товара', category: 'product', isActive: false },
+      { name: 'Бренд', category: 'brand', isActive: false },
+      { name: 'Цена', category: 'price', isActive: false },
+    ],
+    []
+  );
+  const [inputs, setInputs] = useState(defaultInputs);
+
+  useEffect(() => {
+    if (category.length < 1) {
+      setInputs(
+        defaultInputs.map((input) => {
+          input.isActive = false;
+          return input;
+        })
+      );
+    }
+  }, [category, defaultInputs]);
   const handleChange = (e) => {
-    setCategory(e.target.value);
+    const value = e.target.value;
+    setInputs(
+      inputs.map((input) => {
+        input.isActive = input.category === value;
+        return input;
+      })
+    );
+    setCategory(value);
   };
   return (
     <div className={styles.category}>
-      <div className={styles.input_container}>
-        <input
-          type="radio"
-          id="product"
-          value="product"
-          name="category"
-          onChange={handleChange}
-        />
+      {inputs.map((input, index) => (
+        <div
+          key={index}
+          className={styles.input_container}
+        >
+          <input
+            type="radio"
+            id={input.category}
+            value={input.category}
+            name="category"
+            onChange={handleChange}
+            checked={input.isActive}
+          />
 
-        <label
-          className={styles.label}
-          htmlFor="product"
-        >
-          Наименование товара
-        </label>
-      </div>
-      <div className={styles.input_container}>
-        <input
-          type="radio"
-          id="brand"
-          value="brand"
-          name="category"
-          onChange={handleChange}
-        />
-        <label
-          className={styles.label}
-          htmlFor="brand"
-        >
-          Бренд
-        </label>
-      </div>
-      <div className={styles.input_container}>
-        <input
-          type="radio"
-          id="price"
-          value="price"
-          name="category"
-          onChange={handleChange}
-        />
-        <label
-          className={styles.label}
-          htmlFor="price"
-        >
-          Цена
-        </label>
-      </div>
+          <label
+            className={styles.label}
+            htmlFor={input.category}
+          >
+            {input.name}
+          </label>
+        </div>
+      ))}
     </div>
   );
 };

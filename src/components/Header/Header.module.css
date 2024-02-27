@@ -1,7 +1,6 @@
 .header {
   padding: 10px 20px;
   display: flex;
-  max-width: 1280px;
   width: 100%;
   border-bottom: 1px solid var(--text-color);
   align-items: center;

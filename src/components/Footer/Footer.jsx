@@ -22,15 +22,6 @@ const Footer = () => {
             email: dunayev@yandex.ru
           </a>
         </li>
-        <li className={styles.contacts_list_item}>
-          <a
-            target="blanc"
-            className={styles.contacts_item}
-            href="tel:+79138766691"
-          >
-            Телефон: +7-913-876-66-91
-          </a>
-        </li>
       </ul>
     </footer>
   );

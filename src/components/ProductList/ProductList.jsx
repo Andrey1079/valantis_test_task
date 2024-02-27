@@ -1,5 +1,6 @@
 import styles from './ProductList.module.css';
 import Card from '../Card/Card';
+import { memo } from 'react';
 import SearchSection from '../SearchSection/SearchSection';
 import { PAGINATION_LIMIT } from '../../variables/variables';
 
@@ -11,6 +12,7 @@ const ProductList = ({
   products,
   setOffset,
   offset,
+  filter,
 }) => {
   const increaseOffset = () => {
     setOffset(offset + PAGINATION_LIMIT);
@@ -26,36 +28,44 @@ const ProductList = ({
         setCategory={setCategory}
         category={category}
         setFilter={setFilter}
+        filter={filter}
       />
 
-      <ul className={styles.cards_container}>
-        {products.map((product) => {
-          return (
-            <Card
-              key={product.id}
-              data={product}
-            />
-          );
-        })}
-      </ul>
-
-      <div className={styles.pages}>
-        <button
-          onClick={decreaseOffset}
-          className={`${styles.button_left} ${styles.button} ${
-            offset < 1 && styles.button_disabled
-          }`}
-        ></button>
-        <p className={styles.page_number}>{offset}</p>
-        <button
-          onClick={increaseOffset}
-          className={`${styles.button} ${
-            offset >= dataLength - 50 && styles.button_disabled
-          }`}
-        ></button>
-      </div>
+      {products.length > 1 ? (
+        <>
+          <ul className={styles.cards_container}>
+            {products.map((product) => {
+              return (
+                <Card
+                  key={product.id}
+                  data={product}
+                />
+              );
+            })}
+          </ul>
+          <div className={styles.pages}>
+            <button
+              onClick={decreaseOffset}
+              className={`${styles.button_left} ${styles.button} ${
+                offset < 1 && styles.button_disabled
+              }`}
+            ></button>
+            <p className={styles.page_number}>
+              {(offset + PAGINATION_LIMIT) / PAGINATION_LIMIT}
+            </p>
+            <button
+              onClick={increaseOffset}
+              className={`${styles.button} ${
+                offset >= dataLength - 50 && styles.button_disabled
+              }`}
+            ></button>
+          </div>
+        </>
+      ) : (
+        <p>Ничего не нашлось</p>
+      )}
     </section>
   );
 };
 
-export default ProductList;
+export default memo(ProductList);

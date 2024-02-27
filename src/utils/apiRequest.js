@@ -17,12 +17,12 @@ async function checkResponse(settingsObj, body) {
   try {
     const response = await fetch(BASE_URL, settingsObj);
     if (!response.ok) {
-      throw new Error(response.statusText, response.status);
+      throw new Error('Ошибка!', response.statusText, response.status);
+    } else {
+      const data = response.json();
+      return data;
     }
-    const data = response.json();
-    return data;
   } catch (err) {
-    console.log(err);
     apiRequest(body);
   }
 }
