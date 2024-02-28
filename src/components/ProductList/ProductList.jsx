@@ -3,6 +3,7 @@ import Card from '../Card/Card';
 import { memo } from 'react';
 import SearchSection from '../SearchSection/SearchSection';
 import { PAGINATION_LIMIT } from '../../variables/variables';
+import notFound from '../../images/404.jpg';
 
 const ProductList = ({
   dataLength,
@@ -62,7 +63,16 @@ const ProductList = ({
           </div>
         </>
       ) : (
-        <p>Ничего не нашлось</p>
+        <div className={styles.not_found}>
+          <p className={styles.not_found_title}>
+            по вашему запросу ничего не нашлось
+          </p>
+          <img
+            className={styles.not_found_image}
+            src={notFound}
+            alt="ничего не нашлось"
+          />
+        </div>
       )}
     </section>
   );
