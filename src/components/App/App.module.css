@@ -4,11 +4,13 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
   align-items: center;
   font-weight: 400;
+  color: var(--text-color);
   margin: 0 auto;
   background-color: var(--background-color);
   justify-content: space-between;
   min-height: 100vh;
   max-width: 1280px;
+  min-width: 320px;
 }
 * {
   box-sizing: border-box;

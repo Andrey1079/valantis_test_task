@@ -13,16 +13,15 @@ const SearchInput = ({ setFilter, category, setCategory, filter }) => {
     setFilter(value);
   };
   const resetFilter = () => {
-    // if (category) {
     setFilter('');
     setCategory('');
     setInputValue('');
-    // }
   };
 
   return (
     <form className={styles.search_container}>
       <input
+        placeholder="введите поисковый запрос"
         className={styles.input}
         type="text"
         value={inputValue}

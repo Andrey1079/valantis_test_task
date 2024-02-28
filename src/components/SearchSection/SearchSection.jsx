@@ -6,7 +6,6 @@ import { memo } from 'react';
 const SearchSection = ({ setCategory, category, setFilter, filter }) => {
   return (
     <div className={styles.search_section}>
-      <h3 className={styles.title}>Параметры фильтрации</h3>
       <ChooseCategory
         setCategory={setCategory}
         category={category}

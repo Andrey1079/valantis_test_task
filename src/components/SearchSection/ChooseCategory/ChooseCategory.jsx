@@ -37,9 +37,12 @@ const ChooseCategory = ({ setCategory, category }) => {
       {inputs.map((input, index) => (
         <div
           key={index}
-          className={styles.input_container}
+          className={`${styles.input_container} ${
+            input.isActive && styles.input_container_choosen
+          }`}
         >
           <input
+            className={styles.input}
             type="radio"
             id={input.category}
             value={input.category}
@@ -49,7 +52,9 @@ const ChooseCategory = ({ setCategory, category }) => {
           />
 
           <label
-            className={styles.label}
+            className={`${styles.label}   ${
+              input.isActive && styles.label_choosen
+            }`}
             htmlFor={input.category}
           >
             {input.name}
