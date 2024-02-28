@@ -38,7 +38,6 @@ function App() {
   // -------------------------------------------Запрос товаров из общего списка
   useEffect(() => {
     if (ids.length > 1 && filter.length < 1) {
-      console.log('getItems');
       setIsLoading(true);
       const partOfIds = sliceItems(ids);
       getItems(partOfIds)
@@ -56,7 +55,6 @@ function App() {
   // -------------------------------------------Запрос товаров из отфильтрованного списка
   useEffect(() => {
     if (filteredIds.length > 0) {
-      console.log('filteredItems');
       setIsLoading(true);
       const partOfIds = sliceItems(filteredIds);
       getItems(partOfIds)
@@ -76,7 +74,6 @@ function App() {
   // ---------------------------------------------Запрос id по фильтру
   useEffect(() => {
     if (filter.length > 0) {
-      console.log('getFilteredIds');
       setIsLoading(true);
       setOffset(0);
       getFilteredIds(category, filter)
