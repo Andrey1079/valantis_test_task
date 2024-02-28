@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/valantis_test_task/static/css/main.a708000c.css",
+    "main.js": "/valantis_test_task/static/js/main.503a2ba7.js",
+    "static/js/453.64cadc66.chunk.js": "/valantis_test_task/static/js/453.64cadc66.chunk.js",
+    "static/media/reset_btn.png": "/valantis_test_task/static/media/reset_btn.4bfb151ad7608dead4cf.png",
+    "static/media/Inter_500.woff": "/valantis_test_task/static/media/Inter_500.9053572c46aeb4b16caa.woff",
+    "static/media/Inter_400.woff": "/valantis_test_task/static/media/Inter_400.8c206db99195777c6769.woff",
+    "static/media/Inter_500.woff2": "/valantis_test_task/static/media/Inter_500.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter_400.woff2": "/valantis_test_task/static/media/Inter_400.c8ba52b05a9ef10f4758.woff2",
+    "static/media/search.png": "/valantis_test_task/static/media/search.372a60133fea19ec181b.png",
+    "static/media/loader.gif": "/valantis_test_task/static/media/loader.b2a8fa3d8baba9fc720f.gif",
+    "static/media/404.jpg": "/valantis_test_task/static/media/404.93654a7cc6eee5a87135.jpg",
+    "static/media/account_logo.svg": "/valantis_test_task/static/media/account_logo.d2551ee9353f61f891dd487a71b61c4f.svg",
+    "index.html": "/valantis_test_task/index.html",
+    "static/media/arrow.svg": "/valantis_test_task/static/media/arrow.3bb9ed6fee626072d5fc.svg",
+    "main.a708000c.css.map": "/valantis_test_task/static/css/main.a708000c.css.map",
+    "main.503a2ba7.js.map": "/valantis_test_task/static/js/main.503a2ba7.js.map",
+    "453.64cadc66.chunk.js.map": "/valantis_test_task/static/js/453.64cadc66.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a708000c.css",
+    "static/js/main.503a2ba7.js"
+  ]
+}
