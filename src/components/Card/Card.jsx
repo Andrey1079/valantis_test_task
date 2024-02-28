@@ -9,6 +9,7 @@ const data = {
 const Card = ({ data }) => {
   return (
     <li className={styles.container}>
+      <p className={styles.id}>{` id: ${data.id}`}</p>
       <h3 className={styles.title}>{data.product}</h3>
       <p className={styles.brand}>{`Бренд: ${
         data.brand ? data.brand : '-'

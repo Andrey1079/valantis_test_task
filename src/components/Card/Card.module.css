@@ -7,7 +7,7 @@
   box-shadow: 0px 0px 5px var(--blue);
   border-radius: 10px;
   padding: 10px;
-  gap: 15px;
+  gap: 5px;
   max-height: 200px;
   justify-content: space-between;
   height: 100%;
@@ -34,4 +34,9 @@
   font-size: 15px;
   font-weight: 500;
   flex-grow: 0;
+}
+.id {
+  font-size: 10px;
+  color: var(--gray);
+  margin: 0;
 }
