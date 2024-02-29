@@ -46,9 +46,13 @@ function App() {
             const items = checkRepeatIds(res.result);
             setProducts(items);
             setIsLoading(false);
+          } else {
+            setIds([...ids]);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [ids, sliceItems, filter]);
 
@@ -63,6 +67,8 @@ function App() {
             const items = checkRepeatIds(res.result);
             setProducts(items);
             setIsLoading(false);
+          } else {
+            setFilteredIds([...filteredIds]);
           }
         })
         .catch((err) => {

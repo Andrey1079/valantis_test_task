@@ -1,6 +1,6 @@
 import apiRequest from './apiRequest';
 
-const getIds = (offset = 0, limit) => {
+const getIds = () => {
   const body = {
     action: 'get_ids',
   };
