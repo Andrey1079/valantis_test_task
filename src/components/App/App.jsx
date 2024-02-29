@@ -26,14 +26,19 @@ function App() {
   );
 
   useEffect(() => {
-    getIds()
-      .then((res) => {
-        if (res) {
-          setIds([...new Set(res.result)]);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (ids.length < 1)
+      getIds()
+        .then((res) => {
+          if (res && ids.length < 1) {
+            setIds([...new Set(res.result)]);
+          } else if (!res) {
+            setIds([...ids]);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [ids]);
 
   // -------------------------------------------Запрос товаров из общего списка
   useEffect(() => {
@@ -46,7 +51,7 @@ function App() {
             const items = checkRepeatIds(res.result);
             setProducts(items);
             setIsLoading(false);
-          } else {
+          } else if (!res) {
             setIds([...ids]);
           }
         })
@@ -67,7 +72,7 @@ function App() {
             const items = checkRepeatIds(res.result);
             setProducts(items);
             setIsLoading(false);
-          } else {
+          } else if (!res) {
             setFilteredIds([...filteredIds]);
           }
         })

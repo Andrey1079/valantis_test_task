@@ -23,6 +23,7 @@ async function checkResponse(settingsObj, body) {
       return data;
     }
   } catch (err) {
+    console.log('rerequest');
     apiRequest(body);
   }
 }
