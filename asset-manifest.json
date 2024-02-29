@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/valantis_test_task/static/css/main.a708000c.css",
-    "main.js": "/valantis_test_task/static/js/main.fdf72a56.js",
+    "main.js": "/valantis_test_task/static/js/main.d40fbcd4.js",
     "static/js/453.64cadc66.chunk.js": "/valantis_test_task/static/js/453.64cadc66.chunk.js",
     "static/media/reset_btn.png": "/valantis_test_task/static/media/reset_btn.4bfb151ad7608dead4cf.png",
     "static/media/Inter_500.woff": "/valantis_test_task/static/media/Inter_500.9053572c46aeb4b16caa.woff",
@@ -15,11 +15,11 @@
     "index.html": "/valantis_test_task/index.html",
     "static/media/arrow.svg": "/valantis_test_task/static/media/arrow.3bb9ed6fee626072d5fc.svg",
     "main.a708000c.css.map": "/valantis_test_task/static/css/main.a708000c.css.map",
-    "main.fdf72a56.js.map": "/valantis_test_task/static/js/main.fdf72a56.js.map",
+    "main.d40fbcd4.js.map": "/valantis_test_task/static/js/main.d40fbcd4.js.map",
     "453.64cadc66.chunk.js.map": "/valantis_test_task/static/js/453.64cadc66.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a708000c.css",
-    "static/js/main.fdf72a56.js"
+    "static/js/main.d40fbcd4.js"
   ]
 }
