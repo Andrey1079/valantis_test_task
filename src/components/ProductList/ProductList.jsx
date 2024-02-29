@@ -14,6 +14,7 @@ const ProductList = ({
   setOffset,
   offset,
   filter,
+  isLoading,
 }) => {
   const increaseOffset = () => {
     setOffset(offset + PAGINATION_LIMIT);
@@ -62,7 +63,7 @@ const ProductList = ({
             ></button>
           </div>
         </>
-      ) : (
+      ) : !isLoading ? (
         <div className={styles.not_found}>
           <p className={styles.not_found_title}>
             по вашему запросу ничего не нашлось
@@ -73,7 +74,7 @@ const ProductList = ({
             alt="ничего не нашлось"
           />
         </div>
-      )}
+      ) : null}
     </section>
   );
 };

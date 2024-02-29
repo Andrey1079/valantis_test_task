@@ -102,6 +102,7 @@ function App() {
         setFilter={setFilter}
         products={products}
         filter={filter}
+        isLoading={isLoading}
       />
       <Footer />
     </div>
